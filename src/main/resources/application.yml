@@ -1,0 +1,43 @@
+spring:
+  application:
+    name: message-receiver-service
+
+---
+spring:
+  cloud:
+    config:
+      label: main
+  config:
+    activate:
+      on-profile: queue.rabbitmq, keycloak
+    import: configserver:http://${CONFIG_SERVER_USERNAME:user}:${CONFIG_SERVER_PASSWORD:sa}@${CONFIG_SERVER_HOST:localhost}:${CONFIG_SERVER_PORT:8099}?fail-fast=true&max-attempts=10&max-interval=1500&multiplier=1.2&initial-interval=1100
+
+---
+spring:
+  cloud:
+    config:
+      enabled: false
+  config:
+    activate:
+      on-profile: logger
+eureka:
+  client:
+    enabled: false
+message-receiver-service:
+  rabbitmq:
+    exchanges:
+      messagesExchange:
+        name: messages-exchange
+        queues:
+          teamsChannelQueue:
+            name: messages.channel.teams
+            routingKeys:
+              - messages.channel.teams.add
+          slackChannelQueue:
+            name: messages.channel.slack
+            routingKeys:
+              - messages.channel.slack.add
+          emailChannelQueue:
+            name: messages.channel.email
+            routingKeys:
+              - messages.channel.email.add

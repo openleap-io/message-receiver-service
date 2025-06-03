@@ -1,0 +1,89 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
+  "$id": "https://json-schema.org/implementations.html#validator-java",
+  "title": "messages.channel.slack",
+  "description": "messages.channel.slack",
+  "type": "object",
+  "properties": {
+    "recipientId": {
+      "description": "Identification id",
+      "type": "string"
+    },
+    "message": {
+      "description": "The message to be sent",
+      "type": "object",
+      "properties": {
+        "subject": {
+          "description": "The subject of the email",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "messageType": {
+          "description": "The type of message being sent",
+          "type": "string",
+          "enum": [
+            "TEMPLATE",
+            "CUSTOM"
+          ]
+        },
+        "body": {
+          "description": "The body of the email",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attachments": {
+          "description": "List of attachments for the email",
+          "type": [
+            "array",
+            "null"
+          ],
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "contentType": {
+                "type": "string"
+              },
+              "base64Data": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "description": "The message to be sent",
+      "type": "object",
+      "properties": {
+        "channelType": {
+          "description": "The type of channel",
+          "type": "string",
+          "enum": [
+            "SLACK"
+          ]
+        },
+        "channelId": {
+          "description": "The channel id to send the message to",
+          "type": "string"
+        },
+        "channelName": {
+          "description": "The channel name to send the message to",
+          "type": "string"
+        }
+      }
+    }
+  },
+  "required": [
+    "recipientId"
+  ]
+}
