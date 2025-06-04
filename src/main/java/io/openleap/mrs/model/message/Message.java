@@ -18,8 +18,8 @@ import java.util.List;
         property = "messageType"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = CustomMessage.class, name = "CUSTOM"),
-        @JsonSubTypes.Type(value = TemplateMessage.class, name = "TEMPLATE")
+        @JsonSubTypes.Type(value = CustomMessage.class, names = {"CUSTOM","CustomMessage"}),
+        @JsonSubTypes.Type(value = TemplateMessage.class, names = {"TEMPLATE","TemplateMessage"})
 })
 public abstract class Message {
     @Schema(description = "Message type", example = "TEMPLATE")

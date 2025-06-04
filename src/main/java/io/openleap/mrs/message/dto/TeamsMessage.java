@@ -29,4 +29,12 @@ public class TeamsMessage {
     public void setChannel(TeamsChannel channel) {
         this.channel = channel;
     }
+
+    public String getRecipientId() {
+        return recipientId;
+    }
+
+    public void setRecipientId(String recipientId) {
+        this.recipientId = recipientId;
+    }
 }

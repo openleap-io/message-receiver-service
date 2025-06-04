@@ -16,9 +16,9 @@ import io.swagger.v3.oas.annotations.media.Schema;
         property = "channelType"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = EmailChannel.class, name = "EMAIL"),
-        @JsonSubTypes.Type(value = TeamsChannel.class, name = "TEAMS"),
-        @JsonSubTypes.Type(value = SlackChannel.class, name = "SLACK")
+        @JsonSubTypes.Type(value = EmailChannel.class, names = {"EMAIL", "EmailChannel"}),
+        @JsonSubTypes.Type(value = TeamsChannel.class, names = {"TEAMS", "TeamsChannel"}),
+        @JsonSubTypes.Type(value = SlackChannel.class, names = {"SLACK", "SlackChannel"})
 })
 public abstract class Channel {
     @Schema(

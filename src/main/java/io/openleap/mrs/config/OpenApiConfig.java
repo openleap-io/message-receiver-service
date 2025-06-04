@@ -8,7 +8,6 @@ import io.swagger.v3.oas.annotations.security.OAuthFlows;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import io.swagger.v3.oas.annotations.servers.Server;
-
 @OpenAPIDefinition(
         security = {
                 @SecurityRequirement(name = "UniApiKeycloakOauth2"),

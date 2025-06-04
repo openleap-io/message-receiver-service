@@ -65,7 +65,7 @@
         },
         "bcc": {
           "description": "List of BCC recipients",
-          "type": "string"
+          "type": ["string", "null"]
         }
       }
     }
