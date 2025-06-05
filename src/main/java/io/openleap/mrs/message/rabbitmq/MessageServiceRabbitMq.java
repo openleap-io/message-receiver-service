@@ -29,7 +29,7 @@ public class MessageServiceRabbitMq implements MessageService {
 
     @Override
     public void sendMessage(TeamsMessage message) {
-        logger.info("Sending Teams message");
+        logger.debug("Sending Teams message");
         var validationResult = validationService.validateObject(Schema.TEAMS_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Teams message");
@@ -37,13 +37,13 @@ public class MessageServiceRabbitMq implements MessageService {
             throw new ValidationException();
         } else {
             rabbitTemplate.convertAndSend(RabbitMQConfig.MESSAGE_EXCHANGE, RabbitMQConfig.TEAMS_MESSAGE_ROUTE, message);
-            logger.info("Teams message sent successfully");
+            logger.debug("Teams message sent successfully");
         }
     }
 
     @Override
     public void sendMessage(SlackMessage message) {
-        logger.info("Sending Slack message");
+        logger.debug("Sending Slack message");
         var validationResult = validationService.validateObject(Schema.SLACK_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Slack message");
@@ -51,13 +51,13 @@ public class MessageServiceRabbitMq implements MessageService {
             throw new ValidationException();
         } else {
             rabbitTemplate.convertAndSend(RabbitMQConfig.MESSAGE_EXCHANGE, RabbitMQConfig.SLACK_MESSAGE_ROUTE, message);
-            logger.info("Slack message sent successfully");
+            logger.debug("Slack message sent successfully");
         }
     }
 
     @Override
     public void sendMessage(EmailMessage message) {
-        logger.info("Sending Email message");
+        logger.debug("Sending Email message");
         var validationResult = validationService.validateObject(Schema.EMAIL_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Email message");
@@ -65,7 +65,7 @@ public class MessageServiceRabbitMq implements MessageService {
             throw new ValidationException();
         } else {
             rabbitTemplate.convertAndSend(RabbitMQConfig.MESSAGE_EXCHANGE, RabbitMQConfig.EMAIL_MESSAGE_ROUTE, message);
-            logger.info("Email message sent successfully");
+            logger.debug("Email message sent successfully");
         }
     }
 }

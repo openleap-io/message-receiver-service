@@ -26,7 +26,7 @@ public class MessageServiceLogger implements MessageService {
 
     @Override
     public void sendMessage(TeamsMessage message) {
-        logger.info("Sending Teams message");
+        logger.debug("Sending Teams message");
         var validationResult = validationService.validateObject(Schema.TEAMS_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Teams message");
@@ -38,7 +38,7 @@ public class MessageServiceLogger implements MessageService {
 
     @Override
     public void sendMessage(SlackMessage message) {
-        logger.info("Sending Slack message");
+        logger.debug("Sending Slack message");
         var validationResult = validationService.validateObject(Schema.SLACK_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Slack message");
@@ -49,7 +49,7 @@ public class MessageServiceLogger implements MessageService {
 
     @Override
     public void sendMessage(EmailMessage message) {
-        logger.info("Sending Email message");
+        logger.debug("Sending Email message");
         var validationResult = validationService.validateObject(Schema.EMAIL_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Email message");

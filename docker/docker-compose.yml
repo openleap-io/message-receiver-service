@@ -9,9 +9,9 @@ services:
     environment:
       SWAGGER_JSON: /app/openapi.yaml
     volumes:
-      - ./docs/openapi.yaml:/app/openapi.yaml
+      - ./static/openapi.yaml:/app/openapi.yaml
   message-receiver-service:
-    image: remove-me:latest
+    image: docker.io/openleap/io.openleap.message-receiver-service:latest
     container_name: message-receiver-service
     depends_on:
       - openleap-gateway

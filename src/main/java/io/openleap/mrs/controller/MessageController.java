@@ -14,7 +14,10 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SecurityRequirement(name = "UniApiKeycloakOauth2")
 @SecurityRequirement(name = "LocalKeycloakOauth2")
@@ -28,7 +31,6 @@ public class MessageController {
         this.receiverService = receiverService;
     }
 
-    @CrossOrigin(origins = "http://localhost:8081")
     @Operation(
             summary = "Send a message",
             description = "Accepts a message payload and queues it for asynchronous processing. " +
