@@ -1,6 +1,4 @@
 version: '3'
-x-default-service-common: &default-service-common
-  restart: no
 services:
   swagger-ui:
     image: swaggerapi/swagger-ui:latest
@@ -12,6 +10,7 @@ services:
       - ./static/openapi.yaml:/app/openapi.yaml
   message-receiver-service:
     image: docker.io/openleap/io.openleap.message-receiver-service:latest
+    pull_policy: always
     container_name: message-receiver-service
     depends_on:
       - openleap-gateway
@@ -52,7 +51,6 @@ services:
     networks:
       - openleap
   openleap-registry:
-    <<: *default-service-common
     image: docker.io/openleap/io.openleap.registry:latest
     pull_policy: always
     ports:
@@ -62,7 +60,6 @@ services:
     networks:
       - openleap
   openleap-config:
-    <<: *default-service-common
     image: docker.io/openleap/io.openleap.config:latest
     pull_policy: always
     ports:
@@ -75,7 +72,7 @@ services:
     depends_on:
       - openleap-registry
     volumes:
-      - /Users/kirilarsov/configserver:/application/BOOT-INF/classes/config
+      - ./conf:/application/BOOT-INF/classes/config
     environment:
       REGISTRY_HOSTNAME: openleap-registry
     networks:

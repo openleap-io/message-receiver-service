@@ -1,0 +1,34 @@
+spring:
+  rabbitmq:
+    username: guest
+    password: guest
+    host: rabbitmq
+    port: 5672
+  security:
+    oauth2:
+      client:
+        provider:
+          openleap:
+            issuer-uri: http://keycloak-web:8090/realms/openleap-realm
+            token-uri: http://keycloak-web:8090/realms/openleap-realm/protocol/openid-connect/token
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak-web:8090/realms/openleap-realm/protocol/openid-connect/certs
+message-receiver-service:
+  rabbitmq:
+    exchanges:
+      messagesExchange:
+        name: messages-exchange
+        queues:
+          teamsChannelQueue:
+            name: messages.channel.teams
+            routingKeys:
+              - messages.channel.teams.add
+          slackChannelQueue:
+            name: messages.channel.slack
+            routingKeys:
+              - messages.channel.slack.add
+          emailChannelQueue:
+            name: messages.channel.email
+            routingKeys:
+              - messages.channel.email.add
