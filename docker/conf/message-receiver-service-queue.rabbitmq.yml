@@ -32,3 +32,7 @@ message-receiver-service:
             name: messages.channel.email
             routingKeys:
               - messages.channel.email.add
+          telegramChannelQueue:
+            name: messages.channel.telegram
+            routingKeys:
+              - messages.channel.telegram.add
