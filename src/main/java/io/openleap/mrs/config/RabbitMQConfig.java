@@ -13,6 +13,7 @@ public class RabbitMQConfig {
     public static final String TEAMS_MESSAGE_ROUTE = "messages.channel.teams.add";
     public static final String SLACK_MESSAGE_ROUTE = "messages.channel.slack.add";
     public static final String EMAIL_MESSAGE_ROUTE = "messages.channel.email.add";
+    public static final String TELEGRAM_MESSAGE_ROUTE = "messages.channel.telegram.add";
     private Map<String, Exchange> exchanges;
 
     public Map<String, Exchange> getExchanges() {

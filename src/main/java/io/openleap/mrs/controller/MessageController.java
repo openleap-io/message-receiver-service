@@ -187,6 +187,36 @@ public class MessageController {
                                                       }
                                                     }
                                                     """
+                            ),
+                            @ExampleObject(
+                                    name = "Telegram Channel Example",
+                                    summary = "Message request using the TELEGRAM channel and TEMPLATE message type.",
+                                    value =
+                                            """
+                                                    {
+                                                      "recipients": [
+                                                        {
+                                                          "channel": {
+                                                            "channelType": "TELEGRAM",
+                                                            "chatId": "@oltesme"
+                                                          }
+                                                        }
+                                                      ],
+                                                      "message": {
+                                                        "messageType": "TEMPLATE",
+                                                        "name": "Teams message template",
+                                                        "templateParams": { "param1": "value1", "param2": "value2" },
+                                                        "attachments": [
+                                                          {
+                                                            "name": "host-A.log",
+                                                            "contentType": "text/plain",
+                                                            "base64Data": "dGVzdA==",
+                                                            "url": "https://example.com/test.txt"
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                    """
                             )
                     }
             )

@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2019-09/schema#",
+  "$id": "https://json-schema.org/implementations.html#validator-java",
+  "title": "messages.channel.telegram",
+  "description": "messages.channel.telegram",
+  "type": "object",
+  "properties": {
+    "recipientId": {
+      "description": "Identification id",
+      "type": ["string", "null"]
+    },
+    "message": {
+      "description": "The message to be sent",
+      "type": "object",
+      "properties": {
+        "subject": {
+          "description": "The subject of the email",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "messageType": {
+          "description": "The type of message being sent",
+          "type": "string",
+          "enum": [
+            "TEMPLATE",
+            "CUSTOM"
+          ]
+        },
+        "body": {
+          "description": "The body of the email",
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "attachments": {
+          "description": "List of attachments for the email",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "contentType": {
+                "type": "string"
+              },
+              "base64Data": {
+                "type": "string"
+              },
+              "url": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "channel": {
+      "description": "The message to be sent",
+      "type": "object",
+      "properties": {
+        "channelType": {
+          "description": "The type of channel",
+          "type": "string",
+          "enum": [
+            "TELEGRAM"
+          ]
+        },
+        "chatId": {
+          "description": "The chat id to send the message to",
+          "type": "string"
+        }
+      }
+    },
+    "required": [
+      "chatId"
+    ]
+  }
+}

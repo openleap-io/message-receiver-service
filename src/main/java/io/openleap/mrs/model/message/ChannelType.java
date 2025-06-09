@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 public enum ChannelType {
     EMAIL,
     SLACK,
-    TEAMS;
+    TEAMS,
+    TELEGRAM;
 
 }

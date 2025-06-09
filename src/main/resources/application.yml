@@ -20,6 +20,10 @@ spring:
   config:
     activate:
       on-profile: logger
+logging:
+  level:
+    root: INFO
+    io.openleap: DEBUG
 eureka:
   client:
     enabled: false
@@ -41,3 +45,7 @@ message-receiver-service:
             name: messages.channel.email
             routingKeys:
               - messages.channel.email.add
+          telegramChannelQueue:
+            name: messages.channel.telegram
+            routingKeys:
+              - messages.channel.telegram.add

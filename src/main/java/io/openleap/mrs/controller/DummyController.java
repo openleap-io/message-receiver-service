@@ -29,6 +29,11 @@ public class DummyController {
         return new SlackChannel();
     }
 
+    @GetMapping("/TelegramChannel")
+    public TelegramChannel dummyTelegramChannelEndpoint() {
+        return new TelegramChannel();
+    }
+
     @GetMapping("/CustomMessage")
     public CustomMessage dummyCustomMessageEndpoint() {
         return new CustomMessage();

@@ -8,7 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @Schema(
         description = "Channel model for API request.",
         discriminatorProperty = "channelType",
-        subTypes = {EmailChannel.class, TeamsChannel.class, SlackChannel.class,}
+        subTypes = {EmailChannel.class, TeamsChannel.class, SlackChannel.class, TelegramChannel.class}
 )
 @JsonTypeInfo(
         use = JsonTypeInfo.Id.NAME,
@@ -18,7 +18,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 @JsonSubTypes({
         @JsonSubTypes.Type(value = EmailChannel.class, names = {"EMAIL", "EmailChannel"}),
         @JsonSubTypes.Type(value = TeamsChannel.class, names = {"TEAMS", "TeamsChannel"}),
-        @JsonSubTypes.Type(value = SlackChannel.class, names = {"SLACK", "SlackChannel"})
+        @JsonSubTypes.Type(value = SlackChannel.class, names = {"SLACK", "SlackChannel"}),
+        @JsonSubTypes.Type(value = TelegramChannel.class, names = {"TELEGRAM", "TelegramChannel"})
 })
 public abstract class Channel {
     @Schema(

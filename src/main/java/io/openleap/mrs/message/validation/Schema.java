@@ -11,7 +11,8 @@ public enum Schema {
 
     EMAIL_MESSAGE("email.schema.json"),
     TEAMS_MESSAGE("teams.schema.json"),
-    SLACK_MESSAGE("slack.schema.json");
+    SLACK_MESSAGE("slack.schema.json"),
+    TELEGRAM_MESSAGE("telegram.schema.json");
 
 
     private final String schemaName;

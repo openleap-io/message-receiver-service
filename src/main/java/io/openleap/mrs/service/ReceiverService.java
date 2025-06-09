@@ -4,10 +4,8 @@ import io.openleap.mrs.message.MessageService;
 import io.openleap.mrs.message.dto.EmailMessage;
 import io.openleap.mrs.message.dto.SlackMessage;
 import io.openleap.mrs.message.dto.TeamsMessage;
-import io.openleap.mrs.model.message.EmailChannel;
-import io.openleap.mrs.model.message.MessageRequest;
-import io.openleap.mrs.model.message.SlackChannel;
-import io.openleap.mrs.model.message.TeamsChannel;
+import io.openleap.mrs.message.dto.TelegramMessage;
+import io.openleap.mrs.model.message.*;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -40,6 +38,13 @@ public class ReceiverService {
                             request.getMessage(),
                             recipient.getId(),
                             (EmailChannel) recipient.getChannel()
+                    ));
+                    break;
+                case TELEGRAM:
+                    messageService.sendMessage(new TelegramMessage(
+                            request.getMessage(),
+                            recipient.getId(),
+                            (TelegramChannel) recipient.getChannel()
                     ));
                     break;
                 default:

@@ -5,6 +5,7 @@ import io.openleap.mrs.message.MessageService;
 import io.openleap.mrs.message.dto.EmailMessage;
 import io.openleap.mrs.message.dto.SlackMessage;
 import io.openleap.mrs.message.dto.TeamsMessage;
+import io.openleap.mrs.message.dto.TelegramMessage;
 import io.openleap.mrs.message.validation.Schema;
 import io.openleap.mrs.message.validation.ValidationService;
 import org.slf4j.Logger;
@@ -53,6 +54,17 @@ public class MessageServiceLogger implements MessageService {
         var validationResult = validationService.validateObject(Schema.EMAIL_MESSAGE, message);
         if (!validationResult.isEmpty()) {
             logger.error("Validation errors found for Email message");
+            validationResult.forEach(vr -> logger.error(VALIDATION_ERROR, vr.getMessage()));
+            throw new ValidationException();
+        }
+    }
+
+    @Override
+    public void sendMessage(TelegramMessage message) throws ValidationException {
+        logger.debug("Sending Telegram message");
+        var validationResult = validationService.validateObject(Schema.TELEGRAM_MESSAGE, message);
+        if (!validationResult.isEmpty()) {
+            logger.error("Validation errors found for Telegram message");
             validationResult.forEach(vr -> logger.error(VALIDATION_ERROR, vr.getMessage()));
             throw new ValidationException();
         }
