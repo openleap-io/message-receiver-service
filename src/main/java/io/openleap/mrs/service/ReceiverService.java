@@ -1,5 +1,6 @@
 package io.openleap.mrs.service;
 
+import io.openleap.mrs.exception.ValidationException;
 import io.openleap.mrs.message.MessageService;
 import io.openleap.mrs.message.dto.EmailMessage;
 import io.openleap.mrs.message.dto.SlackMessage;
@@ -17,6 +18,9 @@ public class ReceiverService {
     }
 
     public void receiveMessage(MessageRequest request) {
+        if (request == null || request.getRecipients() == null || request.getRecipients().isEmpty()) {
+            throw new ValidationException();
+        }
         request.getRecipients().forEach(recipient -> {
             switch (recipient.getChannel().getChannelType()) {
                 case TEAMS:
