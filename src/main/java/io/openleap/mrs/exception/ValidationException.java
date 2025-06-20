@@ -12,4 +12,12 @@ public class ValidationException extends RuntimeException {
     public ValidationException() {
         super("Validation failed");
     }
+    /**
+     * Constructs a new validation exception with the specified detail message.
+     *
+     * @param message the detail message
+     */
+    public ValidationException(String message) {
+        super(message);
+    }
 }

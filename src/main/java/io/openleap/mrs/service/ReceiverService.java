@@ -21,7 +21,11 @@ public class ReceiverService {
         if (request == null || request.getRecipients() == null || request.getRecipients().isEmpty()) {
             throw new ValidationException();
         }
+
         request.getRecipients().forEach(recipient -> {
+            if (recipient.getChannel() == null || recipient.getChannel().getChannelType() == null) {
+                throw new ValidationException("Recipient channel type is not supported or is null");
+            }
             switch (recipient.getChannel().getChannelType()) {
                 case TEAMS:
                     messageService.sendMessage(new TeamsMessage(
@@ -52,8 +56,9 @@ public class ReceiverService {
                     ));
                     break;
                 default:
-                    throw new IllegalArgumentException("Unsupported recipient type: " + recipient.getChannel().getChannelType());
+                    throw new ValidationException("Unsupported recipient type: " + recipient.getChannel().getChannelType());
             }
         });
+
     }
 }
